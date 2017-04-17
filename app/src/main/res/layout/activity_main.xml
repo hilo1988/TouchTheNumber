@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jp.co.whizztech.touchthenumber.MainActivity">
+
+    <TextView
+        android:id="@+id/mainActivity_timeText"
+        android:text="@string/timeTextDescription"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="120dp" />
+
+    <Button
+        android:id="@+id/mainActivity_startButton"
+        android:layout_width="match_parent"
+        android:text="@string/start"
+        android:layout_margin="8dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true" />
+
+
+    <GridView
+        android:layout_below="@id/mainActivity_timeText"
+        android:layout_above="@id/mainActivity_startButton"
+        android:id="@+id/mainActivity_gridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="5"
+        android:horizontalSpacing="12dp"
+        android:verticalSpacing="12dp"
+        android:layout_margin="4dp"
+        android:gravity="center" />
+
+</RelativeLayout>
