@@ -23,16 +23,15 @@ public class NumberGridAdapter extends BaseAdapter {
      */
     private List<NumberData> numberList;
 
-    /**
-     * 現在選択中の数値
-     */
-    private int currentNumber = 0;
 
     public NumberGridAdapter(Context context, List<NumberData> numberList) {
         this.context = context;
         this.numberList = numberList;
     }
 
+    public void setNumberList(List<NumberData> numberList) {
+        this.numberList = numberList;
+    }
 
     @Override
     public int getCount() {
@@ -44,19 +43,6 @@ public class NumberGridAdapter extends BaseAdapter {
         return getElement(position);
     }
 
-    /**
-     * 現在選択中の数値を取得
-     */
-    public int getCurrentNumber() {
-        return currentNumber;
-    }
-
-    /**
-     * 現在選択中の数値をインクリメント
-     */
-    public void incrementCurrentNumber() {
-        currentNumber++;
-    }
 
     /**
      * データの取得
@@ -75,22 +61,7 @@ public class NumberGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final NumberDataView view;
-        if (convertView == null) {
-            view = (NumberDataView) View.inflate(context, R.layout.adapter_number_data, null);
-        } else {
-            view = (NumberDataView) convertView;
-        }
-        view.bindView(getElement(position));
-        return view;
+        return convertView;
     }
 
-    /**
-     * ゲームの開始
-     */
-    public void startGame(List<NumberData> numberList) {
-        this.numberList = numberList;
-        this.currentNumber = 0;
-        notifyDataSetChanged();
-    }
 }
