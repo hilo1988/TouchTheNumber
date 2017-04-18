@@ -6,12 +6,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * メインアクティビティ
+ * 表示するものは、ヘッダ用テキスト・GridView・スタートボタン
+ * 最初はGridViewにはなにも表示されていないが、スタートボタンを押すことで
+ * 1〜25の数字が表示される。
+ * 最後の25が押されると、ヘッダテキストにかかった時間(秒)が表示される
+ */
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getName();
@@ -32,9 +40,14 @@ public class MainActivity extends AppCompatActivity {
     private NumberGridAdapter adapter;
 
     /**
-     * ゲームにかかった時間
+     * 時間を表示するテキスト
      */
-    int time = 0;
+    private TextView timeText;
+
+    /**
+     * 開始時間(UNIX時間)
+     */
+    private long startTime;
 
 
     @Override
@@ -45,11 +58,16 @@ public class MainActivity extends AppCompatActivity {
         adapter = new NumberGridAdapter(this, Collections.<NumberData>emptyList());
         numberGridView.setAdapter(adapter);
         numberGridView.setOnItemClickListener(onItemClickListener);
+        timeText = (TextView) findViewById(R.id.mainActivity_timeText);
 
         findViewById(R.id.mainActivity_startButton)
                 .setOnClickListener(onclickStartButton);
     }
 
+
+    /**
+     * 数字をおした時の動作
+     */
     private final AdapterView.OnItemClickListener onItemClickListener =
             new AdapterView.OnItemClickListener() {
                 @Override
@@ -70,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
                                     "目標達成！",
                                     Toast.LENGTH_SHORT)
                                     .show();
+                            long time = System.currentTimeMillis() - startTime;
+                            timeText.setText(String.format("%s秒でクリアしました！", time / 1000));
+                        } else {
+                            timeText.setText(String.valueOf(data.getNumber()));
                         }
                         adapter.notifyDataSetChanged();
                     }
@@ -83,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
             new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    startTime = System.currentTimeMillis();
+                    adapter.startGame(createNumberDataList());
+                    timeText.setText("0");
                 }
             };
 

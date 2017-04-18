@@ -84,4 +84,13 @@ public class NumberGridAdapter extends BaseAdapter {
         view.bindView(getElement(position));
         return view;
     }
+
+    /**
+     * ゲームの開始
+     */
+    public void startGame(List<NumberData> numberList) {
+        this.numberList = numberList;
+        this.currentNumber = 0;
+        notifyDataSetChanged();
+    }
 }
