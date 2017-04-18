@@ -3,7 +3,6 @@ package jp.co.whizztech.touchthenumber;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 /**
  * 数字を表示するView
@@ -30,9 +29,6 @@ public class NumberDataView extends RelativeLayout {
     }
 
     public void bindView(NumberData data) {
-        TextView textView = (TextView) findViewById(R.id.numberDataAdapter_text);
-        textView.setText(String.valueOf(data.getNumber()));
-        textView.setBackgroundColor(getResources().getColor(getTouchableColor(data)));
     }
 
     private int getTouchableColor(NumberData data) {
