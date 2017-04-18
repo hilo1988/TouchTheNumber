@@ -6,11 +6,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 /**
- * メインアクティビティ
- * 表示するものは、ヘッダ用テキスト・GridView・スタートボタン
- * 最初はGridViewにはなにも表示されていないが、スタートボタンを押すことで
- * 1〜25の数字が表示される。
- * 最後の25が押されると、ヘッダテキストにかかった時間(秒)が表示される
+ * STEP1 レイアウトのViewを取得しよう！
  */
 public class MainActivity extends AppCompatActivity {
 
